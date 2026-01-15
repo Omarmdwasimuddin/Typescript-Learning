@@ -1,0 +1,16 @@
+{
+  "name": "typescript-learning",
+  "version": "1.0.0",
+  "description": "এই রিপোজিটরিটি **TypeScript শেখার জন্য বেসিক সেটআপ ও প্রয়োজনীয় কমান্ডগুলো** স্টেপ-বাই-স্টেপ দেখানোর জন্য তৈরি করা হয়েছে।",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
