@@ -143,3 +143,49 @@ index.ts → (tsc index.ts) → index.js → (node index.js) → Output
 - অবশ্যই প্রথমে JavaScript (.js) ফাইলে কম্পাইল করতে হবে
 - `--watch` ফ্ল্যাগ ব্যবহার করলে ফাইল পরিবর্তন স্বয়ংক্রিয়ভাবে কম্পাইল হবে
 ---
+
+## 📚 Class 02: built-in-type
+
+### 📁 Project Structure
+প্রথমে একটি নতুন ফোল্ডার তৈরি করুন যেখানে আমরা TypeScript প্রোগ্রাম লিখব।
+
+![File Folder Structure](/img/img06.png)
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+// built in data types = string, number, boolean, null, undefined, void
+
+let id; // implicit any type
+let userId: number; // explicit number type
+let firstName: string = "Wasim"; // explicit string type with initialization
+let lastName: string; // explicit string type
+let fullName: string;
+let isActive: boolean = true; // explicit boolean type with initialization
+
+// userId = "101"; // Error: Type 'string' is not assignable to type 'number'
+userId = 101; 
+lastName = "Uddin";
+
+console.log(firstName);
+
+fullName = firstName.concat(" ", lastName);
+console.log("User Name:", fullName);
+
+console.log("User ID:", userId);
+console.log("Is Active:", isActive);
+console.log(`Your Id is: ${userId}, Name: ${fullName}, Active: ${isActive}`);
+
+console.log(fullName.split(" "))
+console.log(fullName.toUpperCase())
+console.log(fullName.toLowerCase())
+
+function greetUser(name:string):void {
+    console.log(`Hello, ${name}!`);
+}
+
+greetUser("Wasim")
+```
+
+আউটপুট: ![File Folder Structure](/img/img06.png)
