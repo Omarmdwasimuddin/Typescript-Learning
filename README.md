@@ -188,4 +188,4 @@ function greetUser(name:string):void {
 greetUser("Wasim")
 ```
 
-আউটপুট: ![File Folder Structure](/img/img06.png)
+আউটপুট: ![File Folder Structure](/img/img07.png)
