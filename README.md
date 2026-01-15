@@ -97,6 +97,51 @@ tsc --version
 
 ---
 
-## class 01
-![first-program folder](/img/img02.png)
-![powershel img](/img/img01.png)
+## 📚 Class 01: Your First TypeScript Program
+
+### 📁 Project Structure
+প্রথমে একটি নতুন ফোল্ডার তৈরি করুন যেখানে আমরা TypeScript প্রোগ্রাম লিখব।
+
+```
+first-program/
+├── index.ts
+├── index.js
+└── package.json
+```
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+let userName = "Wasim";
+console.log("Hello, " + userName + "!");
+```
+
+![TypeScript File Screenshot](/img/img03.png)
+
+2. **TypeScript কম্পাইল করুন**
+```bash
+npx tsc index.ts
+```
+এই কমান্ডটি `index.ts` ফাইলটি কম্পাইল করে `index.js` JavaScript ফাইল তৈরি করবে।
+
+![Terminal Screenshot](/img/img04.png)
+
+3. **JavaScript ফাইল রান করুন**
+```bash
+node index.js
+```
+আউটপুট: `Hello, Wasim!`
+
+### 📊 Workflow Summary
+```
+index.ts → (tsc index.ts) → index.js → (node index.js) → Output
+```
+
+![File Folder Structure](/img/img05.png)
+
+### ⚡ Quick Notes
+- TypeScript (.ts) ফাইল সরাসরি Node.js এ রান করা যায় না
+- অবশ্যই প্রথমে JavaScript (.js) ফাইলে কম্পাইল করতে হবে
+- `--watch` ফ্ল্যাগ ব্যবহার করলে ফাইল পরিবর্তন স্বয়ংক্রিয়ভাবে কম্পাইল হবে
+---
