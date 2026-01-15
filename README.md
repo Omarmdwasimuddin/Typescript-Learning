@@ -96,3 +96,6 @@ tsc --version
 ```
 
 ---
+
+## class 01
+![powershel img](/img/img01.png)
