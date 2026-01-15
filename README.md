@@ -109,10 +109,15 @@ tsc --version
 1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
 ```typescript
 let userName = "Wasim";
-console.log("Hello, " + userName + "!");
-```
+let age = 28;
+console.log("Hello, " + userName + "! You are " + age + " years old.");
 
-![TypeScript File Screenshot](/img/img03.png)
+function addNumber(num1: number, num2: number) {
+    console.log(num1 * num2);
+}
+
+addNumber(5, 10);
+```
 
 2. **TypeScript কম্পাইল করুন**
 ```bash
