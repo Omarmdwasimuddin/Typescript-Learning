@@ -98,4 +98,5 @@ tsc --version
 ---
 
 ## class 01
+![first-program folder](/img/img02.png)
 ![powershel img](/img/img01.png)
