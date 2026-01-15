@@ -102,12 +102,7 @@ tsc --version
 ### 📁 Project Structure
 প্রথমে একটি নতুন ফোল্ডার তৈরি করুন যেখানে আমরা TypeScript প্রোগ্রাম লিখব।
 
-```
-first-program/
-├── index.ts
-├── index.js
-└── package.json
-```
+![File Folder Structure](/img/img05.png)
 
 ### 🔧 Setup & Compilation Process
 
@@ -137,8 +132,6 @@ node index.js
 ```
 index.ts → (tsc index.ts) → index.js → (node index.js) → Output
 ```
-
-![File Folder Structure](/img/img05.png)
 
 ### ⚡ Quick Notes
 - TypeScript (.ts) ফাইল সরাসরি Node.js এ রান করা যায় না
