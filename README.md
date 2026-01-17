@@ -244,3 +244,23 @@ multipleTypes = ['Wasim', 29];
 console.log(multipleTypes[1])
 ```
 ---
+## 📚 Class 05: Tuple type
+
+### 📁 Folder Structure
+
+![File Folder Structure](/img/img11.png)
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+// mixed data - key, value
+let user: [number, string];
+user = [101, 'Bangla']
+//let user: [number, string] = [101,'Bangla'];
+
+user.push(102,'English')
+console.log(user)
+console.log(user[1])
+```
+---
