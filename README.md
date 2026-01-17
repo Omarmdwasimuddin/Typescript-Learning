@@ -189,3 +189,30 @@ greetUser("Wasim")
 ```
 
 আউটপুট: ![File Folder Structure](/img/img07.png)
+---
+## 📚 Class 03: union type
+
+### 📁 Project Structure
+
+![File Folder Structure](/img/img08.png)
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+let userId: (string | number | boolean);
+
+userId = "101";
+userId = 101;
+userId = true;
+
+function displayUserInfo(userId: string | number | boolean ) {
+    console.log(userId)
+}
+
+displayUserInfo(101);
+displayUserInfo("101")
+displayUserInfo(true)
+```
+
+আউটপুট: ![File Folder Structure](/img/img09.png)
