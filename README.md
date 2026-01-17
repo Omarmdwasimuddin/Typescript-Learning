@@ -99,7 +99,7 @@ tsc --version
 
 ## 📚 Class 01: Your First TypeScript Program
 
-### 📁 Project Structure
+### 📁 Folder Structure
 প্রথমে একটি নতুন ফোল্ডার তৈরি করুন যেখানে আমরা TypeScript প্রোগ্রাম লিখব।
 
 ![File Folder Structure](/img/img05.png)
@@ -146,7 +146,7 @@ index.ts → (tsc index.ts) → index.js → (node index.js) → Output
 
 ## 📚 Class 02: built-in-type
 
-### 📁 Project Structure
+### 📁 Folder Structure
 প্রথমে একটি নতুন ফোল্ডার তৈরি করুন যেখানে আমরা TypeScript প্রোগ্রাম লিখব।
 
 ![File Folder Structure](/img/img06.png)
@@ -192,7 +192,7 @@ greetUser("Wasim")
 ---
 ## 📚 Class 03: union type
 
-### 📁 Project Structure
+### 📁 Folder Structure
 
 ![File Folder Structure](/img/img08.png)
 
@@ -216,3 +216,31 @@ displayUserInfo(true)
 ```
 
 আউটপুট: ![File Folder Structure](/img/img09.png)
+---
+## 📚 Class 04: array type
+
+### 📁 Folder Structure
+
+![File Folder Structure](/img/img10.png)
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+//let userNames: ['Wasim','Rafiq','Kader'];
+//let userNames: string[];
+let userNames: Array<string>;
+
+userNames = ['Wasim','Rafiq','Kader','Akram'];
+
+console.log(userNames[2])
+userNames.sort();
+console.log(userNames);
+
+let multipleTypes: (string | number) [];
+
+multipleTypes = ['Wasim', 29];
+
+console.log(multipleTypes[1])
+```
+---

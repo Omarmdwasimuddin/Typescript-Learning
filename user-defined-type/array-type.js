@@ -1,0 +1,10 @@
+//let userNames: ['Wasim','Rafiq','Kader'];
+//let userNames: string[];
+var userNames;
+userNames = ['Wasim', 'Rafiq', 'Kader', 'Akram'];
+console.log(userNames[2]);
+userNames.sort();
+console.log(userNames);
+var multipleTypes;
+multipleTypes = ['Wasim', 29];
+console.log(multipleTypes[1]);
