@@ -310,7 +310,7 @@ console.log(RequestType3.id)
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`any-type.ts`)
 ```typescript
 let userName;
 
@@ -403,5 +403,60 @@ function requestHandler(requestType:RequestType) {
 }
 
 requestHandler("GET")
+```
+---
+## 📚 Class 10: Module export & import
+
+### 📁 Folder Structure
+
+![File Folder Structure](/img/img15.png)
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+//01
+//import { studentName, studentAge } from "./Student";
+
+//function displayStudentInfo(): void {
+    //console.log(`${studentName}, ${studentAge}`)
+//}
+
+//displayStudentInfo();
+
+
+//02
+//import { displayStudentInfo } from "./Student";
+//displayStudentInfo();
+
+
+//03
+//import { studentName as name, studentAge as age } from "./Student";
+
+//function displayStudentInfo(): void {
+    //console.log(`${name}, ${age}`)
+//}
+
+//displayStudentInfo();
+
+//04
+import * as Student from "./Student";
+
+function displayStudentInfo(): void {
+    console.log(`${Student.studentName}, ${Student.studentAge}`)
+}
+
+displayStudentInfo();
+```
+2. **TypeScript ফাইল তৈরি করুন** (`Student.ts`)
+```typescript
+export let studentName: string = "Wasim Uddin";
+export let studentAge: number = 28;
+
+
+//02
+//export function displayStudentInfo(): void {
+    //console.log(`${studentName}, ${studentAge}`)
+//}
 ```
 ---
