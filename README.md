@@ -198,7 +198,7 @@ greetUser("Wasim")
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`union-type.ts`)
 ```typescript
 let userId: (string | number | boolean);
 
@@ -225,7 +225,7 @@ displayUserInfo(true)
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`array-type.ts`)
 ```typescript
 //let userNames: ['Wasim','Rafiq','Kader'];
 //let userNames: string[];
@@ -252,7 +252,7 @@ console.log(multipleTypes[1])
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`tuple-type.ts`)
 ```typescript
 // mixed data - key, value
 let user: [number, string];
@@ -272,7 +272,7 @@ console.log(user[1])
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`enum-type.ts`)
 ```typescript
 // enum - store constants; duplicate value is not allowed here
 
@@ -328,7 +328,7 @@ userName = [10,20];
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`object-type.ts`)
 ```typescript
 //let user1: {userName:string, userId:number};
 //user1 = {userName:"Wasim", userId:101};
@@ -374,7 +374,7 @@ for (const key in users) {
 
 ### 🔧 Setup & Compilation Process
 
-1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+1. **TypeScript ফাইল তৈরি করুন** (`custom-type.ts`)
 ```typescript
 type User = {userName:string, userId:number}
 
