@@ -306,3 +306,17 @@ enum RequestType3 {
 console.log(RequestType3.id)
 ```
 ---
+## 📚 Class 07: any type
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`index.ts`)
+```typescript
+let userName;
+
+userName = 'Wasim',
+userName = 101,
+userName = true,
+userName = [10,20];
+```
+---
