@@ -599,3 +599,202 @@ src/*.ts → (tsc) → dist/*.js → (node dist/index.js)
 * Next.js / React / Node প্রজেক্টে এই কনফিগ প্রায় একইভাবে ব্যবহার হয়
 
 ---
+# 📚 Class 12: `tsconfig.json` (Browser-Friendly Configuration)
+
+এই ক্লাসে আমরা শিখবো ব্রাউজার-বেসড TypeScript প্রজেক্টের জন্য `tsconfig.json` কনফিগারেশন।
+
+---
+
+## ⚙️ `tsconfig.json` (Browser-Friendly Configuration)
+
+```json
+{
+  "compilerOptions": {
+    // File Layout
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Environment Settings - Browser friendly
+    "module": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    
+    // JSX support (if needed)
+    "jsx": "react-jsx",
+
+    // Module resolution
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    
+    // Output settings
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Strict Type Checking
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    
+    // ES Module settings for browser
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+---
+
+## 🔍 Important Options Explained (Simple Language)
+
+| Option | কাজ |
+|--------|------|
+| `rootDir` | TypeScript source ফাইলের জায়গা |
+| `outDir` | Compiled JavaScript ফাইল যাবে এখানে |
+| `target` | কোন JS version এ convert হবে |
+| `module` | Import / Export system |
+| `lib` | Browser API support যোগ করে |
+| `strict` | Strong type checking চালু করে |
+| `noUnusedLocals` | ব্যবহার না হওয়া ভ্যারিয়েবল ধরবে |
+| `sourceMap` | Debugging সহজ করে |
+| `declaration` | `.d.ts` টাইপ ফাইল তৈরি করে |
+
+---
+
+## 🌐 HTML File (`public/index.html`)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>User Registration</h1>
+    <form class="user-form">
+        <div>
+            <label for="name">NAME:</label>
+            <input type="text" id="name">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email">
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <script src="../dist/index.js" type="module"></script>
+</body>
+</html>
+```
+
+---
+
+## 🎨 CSS File (`public/style.css`)
+
+```css
+*{
+    background-color: chocolate;
+    color: antiquewhite;
+}
+
+div{
+    margin: 0.5rem 0;
+}
+
+input[type="email"]{
+    width: 10rem;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.user-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+```
+
+---
+
+## ▶️ Compile Entire Project
+
+এখন আলাদা করে ফাইল দিতে হবে না
+শুধু এই কমান্ডই যথেষ্ট:
+
+```bash
+npx tsc
+```
+
+Watch mode এ রান করতে:
+
+```bash
+npx tsc --watch
+```
+
+---
+
+## 🔄 Updated Workflow
+
+```
+src/*.ts → (tsc) → dist/*.js → HTML page loads dist/index.js → Browser runs
+```
+
+---
+
+## 📁 Final Project Structure
+
+```
+typescript-project/
+├── src/
+│   ├── index.ts
+│   └── Student.ts
+├── dist/
+│   ├── index.js
+│   ├── Student.js
+│   └── (other compiled files)
+├── public/
+│   ├── index.html
+│   └── style.css
+├── tsconfig.json
+└── package.json
+```
+
+---
+
+## ⚡ Quick Notes
+
+* `tsconfig.json` থাকলে `npx tsc index.ts` প্রয়োজন হয় না
+* Browser-based প্রজেক্টের জন্য `lib: ["DOM"]` অত্যন্ত গুরুত্বপূর্ণ
+* `"module": "ESNext"` ES6 Modules সাপোর্ট করে
+* HTML ফাইলে `<script type="module">` ব্যবহার করতে হবে ES Modules এর জন্য
+* এই সেটআপ React, Vue, বা যেকোনো ফ্রন্টএন্ড প্রজেক্টের জন্য উপযোগী
+
+---
+
+## 🚀 How to Run the Project
+
+1. **TypeScript কম্পাইল করুন:**
+```bash
+npx tsc --watch
+```
+
+2. **Live Server চালু করুন:**
+   - VS Code-এ `Live Server` এক্সটেনশন ইন্সটল করুন
+   - `public/index.html` ফাইল ওপেন করে `Go Live` ক্লিক করুন
+---

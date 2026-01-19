@@ -1,5 +1,25 @@
 *{
     background-color: chocolate;
     color: antiquewhite;
+}
+
+div{
+    margin: 0.5rem 0;
+}
+
+input[type="email"]{
+    width: 10rem;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
     text-align: center;
+}
+
+.user-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
