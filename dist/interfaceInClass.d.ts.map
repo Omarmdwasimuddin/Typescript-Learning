@@ -1,0 +1,1 @@
+{"version":3,"file":"interfaceInClass.d.ts","sourceRoot":"","sources":["../src/interfaceInClass.ts"],"names":[],"mappings":"AAAA,UAAU,cAAc;IACpB,UAAU,EAAG,MAAK,MAAM,CAAA;CAC3B;AACD,cAAM,IAAK,YAAW,cAAc;IACpB,OAAO,CAAC,QAAQ;IAAU,OAAO,CAAC,GAAG;gBAA7B,QAAQ,EAAE,MAAM,EAAU,GAAG,EAAE,MAAM;IAEzD,UAAU,eAER;CACL;AAED,QAAA,IAAI,IAAI,MAAwB,CAAC"}

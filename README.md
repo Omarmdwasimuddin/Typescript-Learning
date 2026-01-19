@@ -1315,3 +1315,219 @@ interface IProduct {
 - Interface দিয়ে **class implement** করা যায়
 
 ---
+## 📚 Class 15: Type Guards and `typeof` Operator
+
+এই ক্লাসে আমরা শিখবো **Type Guards** এবং **`typeof` operator** কীভাবে TypeScript-এ ব্যবহার করতে হয়। Type Guards আমাদেরকে রানটাইমে ভ্যারিয়েবলের টাইপ চেক করতে সাহায্য করে।
+
+---
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`type-guards.ts`)
+```typescript
+/* 01 - Basic Array Type Guard */
+const todos = ["todo1", "todo2"];
+
+function printTodos(todos: string[]) {
+    todos.map((todo) => console.log(todo));
+}
+printTodos(todos);
+
+/* 02 - Multiple Type Guard */
+const todos2 = ["todo1", "todo2"];
+
+function printTodos2(todos: string[] | string | number) {
+    if (typeof todos === "object") {
+        todos.map((todo) => console.log(todo));
+    } else if (typeof todos === "string") {
+        console.log(todos);
+    } else if (typeof todos === "number") {
+        console.log(todos);
+    }
+}
+printTodos2(todos2);
+printTodos2("todo3");
+printTodos2(101);
+
+/* 03 - Null Check Type Guard */
+const todos3 = ["todo1", "todo2"];
+
+function printTodos3(todos: string[] | null) {
+    if (todos) {
+        todos.map((todo) => console.log(todo));
+    } else {
+        console.log("no todos");
+    }
+}
+printTodos3(todos3);
+printTodos3(null);
+
+/* 04 - typeof Operator Example */
+let firstName: string;
+let lastName: typeof firstName;
+lastName = "123";
+```
+---
+
+## 🔍 Type Guards Explained
+
+### 📌 What are Type Guards?
+Type Guards হলো TypeScript-এর একটি feature যা **রানটাইমে ভ্যারিয়েবলের টাইপ চেক** করতে সাহায্য করে। যখন union type ব্যবহার করি, তখন TypeScript জানতে পারে না exact কোন টাইপ আসবে। Type Guard দিয়ে আমরা সেটা চেক করতে পারি।
+
+
+### 🔹 `instanceof` Type Guard
+```typescript
+class Car {
+    drive() {
+        console.log("Driving a car");
+    }
+}
+
+class Bike {
+    ride() {
+        console.log("Riding a bike");
+    }
+}
+
+function useVehicle(vehicle: Car | Bike) {
+    if (vehicle instanceof Car) {
+        vehicle.drive();  // TypeScript knows it's a Car
+    } else {
+        vehicle.ride();   // TypeScript knows it's a Bike
+    }
+}
+
+const myCar = new Car();
+const myBike = new Bike();
+
+useVehicle(myCar);   // Driving a car
+useVehicle(myBike);  // Riding a bike
+```
+
+### 🔹 Custom Type Guard Function
+```typescript
+interface IUser {
+    name: string;
+    age: number;
+}
+
+interface IAdmin {
+    name: string;
+    role: string;
+}
+
+// Custom type guard function
+function isUser(person: IUser | IAdmin): person is IUser {
+    return (person as IUser).age !== undefined;
+}
+
+function processPerson(person: IUser | IAdmin) {
+    if (isUser(person)) {
+        console.log(`User: ${person.name}, Age: ${person.age}`);
+    } else {
+        console.log(`Admin: ${person.name}, Role: ${person.role}`);
+    }
+}
+
+const user: IUser = { name: "Wasim", age: 28 };
+const admin: IAdmin = { name: "Omar", role: "Super Admin" };
+
+processPerson(user);   // User: Wasim, Age: 28
+processPerson(admin);  // Admin: Omar, Role: Super Admin
+```
+
+---
+
+## 🛠️ Practical Examples
+
+### 🔹 API Response Handler
+```typescript
+type ApiResponse = 
+    | { status: "success"; data: any }
+    | { status: "error"; message: string }
+    | { status: "loading" };
+
+function handleResponse(response: ApiResponse): void {
+    if (response.status === "success") {
+        console.log("Data:", response.data);
+    } else if (response.status === "error") {
+        console.log("Error:", response.message);
+    } else if (response.status === "loading") {
+        console.log("Loading...");
+    }
+}
+
+handleResponse({ status: "success", data: { id: 1, name: "Wasim" } });
+handleResponse({ status: "error", message: "Not found" });
+handleResponse({ status: "loading" });
+```
+---
+
+## 🔄 `typeof` Operator Advanced Usage
+
+### 🔹 Type Inference with `typeof`
+```typescript
+const user = {
+    name: "Wasim",
+    age: 28,
+    email: "wasim@example.com"
+};
+
+// user অবজেক্টের টাইপ থেকে নতুন টাইপ তৈরি
+type UserType = typeof user;
+
+const newUser: UserType = {
+    name: "Omar",
+    age: 29,
+    email: "omar@example.com"
+};
+
+console.log(newUser);
+```
+
+### 🔹 Enum with `typeof`
+```typescript
+enum UserRole {
+    Admin = "ADMIN",
+    User = "USER",
+    Guest = "GUEST"
+}
+
+// Enum থেকে টাইপ তৈরি
+type RoleType = typeof UserRole;
+
+// Enum থেকে value-র union type তৈরি
+type RoleValues = typeof UserRole[keyof typeof UserRole];
+
+const myRole: RoleValues = UserRole.Admin;
+console.log(myRole); // ADMIN
+```
+
+---
+
+## 🔗 Real-world Use Cases
+
+1. **API Request Handler:**
+```typescript
+async function handleRequest(request: FetchRequest | GraphQLRequest) {
+    if (request.type === "fetch") {
+        // Fetch API call
+    } else if (request.type === "graphql") {
+        // GraphQL API call
+    }
+}
+```
+
+2. **Form Input Processing:**
+```typescript
+function processInput(input: string | number | File) {
+    if (typeof input === "string") {
+        return input.trim();
+    } else if (typeof input === "number") {
+        return input.toString();
+    } else if (input instanceof File) {
+        return input.name;
+    }
+}
+```
+---
