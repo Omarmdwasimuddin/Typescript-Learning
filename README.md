@@ -460,3 +460,142 @@ export let studentAge: number = 28;
 //}
 ```
 ---
+## 📚 Class 11: `tsconfig.json` (Project Configuration)
+
+এই ক্লাসে আমরা শিখবো **`tsconfig.json` কী, কেন ব্যবহার করা হয়, এবং প্র্যাক্টিক্যাল প্রজেক্টে কিভাবে সেটআপ করতে হয়**।
+
+---
+
+### ❓ `tsconfig.json` কী?
+
+`tsconfig.json` হলো TypeScript প্রজেক্টের **configuration file**
+এটা দিয়ে আমরা নির্ধারণ করি:
+
+* কোন ফোল্ডার থেকে `.ts` ফাইল নেবে
+* কোন ফোল্ডারে `.js` আউটপুট যাবে
+* কোন JavaScript version টার্গেট করবে
+* Strict type checking হবে কিনা
+* Module system কী হবে
+
+---
+
+### 📁 Recommended Folder Structure
+
+```
+project-root/
+│
+├── src/
+│   ├── index.ts
+│   └── Student.ts
+│
+├── dist/
+│   └── index.js
+│
+├── tsconfig.json
+└── package.json
+```
+
+---
+
+### 🛠️ `tsconfig.json` Create Command
+
+```bash
+npx tsc --init
+```
+
+এরপর নিচের কনফিগারেশন দিয়ে **`tsconfig.json` আপডেট করো** 👇
+
+---
+
+### ⚙️ `tsconfig.json` (Recommended Configuration)
+
+```json
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    /* File Layout */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Environment Settings */
+    "module": "nodenext",
+    "target": "esnext",
+    "types": [],
+
+    /* Other Outputs */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* Stricter Typechecking Options */
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* Style Options */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    /* Recommended Options */
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  },
+
+  "include": ["./src"],
+  "files": ["./src/index.ts"]
+}
+```
+
+---
+
+### 🔍 Important Options Explained (Simple Language)
+
+| Option           | কাজ                                 |
+| ---------------- | ----------------------------------- |
+| `rootDir`        | TypeScript source ফাইলের জায়গা      |
+| `outDir`         | Compiled JavaScript ফাইল যাবে এখানে |
+| `target`         | কোন JS version এ convert হবে        |
+| `module`         | Import / Export system              |
+| `strict`         | Strong type checking চালু করে       |
+| `noUnusedLocals` | ব্যবহার না হওয়া ভ্যারিয়েবল ধরবে     |
+| `sourceMap`      | Debugging সহজ করে                   |
+| `declaration`    | `.d.ts` টাইপ ফাইল তৈরি করে          |
+
+---
+
+### ▶️ Compile Entire Project
+
+এখন আলাদা করে ফাইল দিতে হবে না
+শুধু এই কমান্ডই যথেষ্ট:
+
+```bash
+npx tsc
+```
+
+Watch mode এ রান করতে:
+
+```bash
+npx tsc --watch
+```
+
+---
+
+### 🔄 Updated Workflow
+
+```
+src/*.ts → (tsc) → dist/*.js → (node dist/index.js)
+```
+
+---
+
+### ⚡ Quick Notes
+
+* `tsconfig.json` থাকলে `npx tsc index.ts` প্রয়োজন হয় না
+* বড় প্রজেক্টে **এটাই স্ট্যান্ডার্ড সেটআপ**
+* Next.js / React / Node প্রজেক্টে এই কনফিগ প্রায় একইভাবে ব্যবহার হয়
+
+---
