@@ -599,7 +599,7 @@ src/*.ts → (tsc) → dist/*.js → (node dist/index.js)
 * Next.js / React / Node প্রজেক্টে এই কনফিগ প্রায় একইভাবে ব্যবহার হয়
 
 ---
-# 📚 Class 12: `tsconfig.json` (Browser-Friendly Configuration)
+## 📚 Class 12: `tsconfig.json` (Browser-Friendly Configuration)
 
 এই ক্লাসে আমরা শিখবো ব্রাউজার-বেসড TypeScript প্রজেক্টের জন্য `tsconfig.json` কনফিগারেশন।
 
