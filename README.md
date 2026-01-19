@@ -798,7 +798,7 @@ npx tsc --watch
    - VS Code-এ `Live Server` এক্সটেনশন ইন্সটল করুন
    - `public/index.html` ফাইল ওপেন করে `Go Live` ক্লিক করুন
 ---
-# 📚 Class 13: Function Signatures
+## 📚 Class 13: Function Signatures
 
 এই ক্লাসে আমরা শিখবো TypeScript-এ **Function Signatures** কীভাবে কাজ করে। Function Signature হলো একটি ফাংশনের **structure বা blueprint** ডিফাইন করা।
 
