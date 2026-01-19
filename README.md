@@ -798,3 +798,184 @@ npx tsc --watch
    - VS Code-এ `Live Server` এক্সটেনশন ইন্সটল করুন
    - `public/index.html` ফাইল ওপেন করে `Go Live` ক্লিক করুন
 ---
+# 📚 Class 13: Function Signatures
+
+এই ক্লাসে আমরা শিখবো TypeScript-এ **Function Signatures** কীভাবে কাজ করে। Function Signature হলো একটি ফাংশনের **structure বা blueprint** ডিফাইন করা।
+
+---
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`function-signature.ts`)
+```typescript
+// Function Signature
+let userInfo01: ()=> void;
+let userInfo02: (name: string)=> void;
+let userInfo03: (name: string, age: number)=> void;
+
+userInfo01 = ()=> {
+    console.log("Wasim is 28 Years old!")
+}
+userInfo01();
+
+userInfo02 = (name: string)=> {
+    console.log(`${name} is 28 Years old!`)
+}
+userInfo02("Wasim Uddin");
+
+userInfo03 = (name: string, age: number)=> {
+    console.log(`${name} is ${age} Years old!`)
+}
+userInfo03("Wasim Uddin", 29)
+```
+
+2. **TypeScript কম্পাইল করুন**
+```bash
+npx tsc function-signature.ts
+```
+
+3. **JavaScript ফাইল রান করুন**
+```bash
+node function-signature.js
+```
+
+---
+
+## 🔍 Function Signature Explained
+
+### 📌 What is Function Signature?
+Function Signature হলো ফাংশনের **টাইপ ডিক্লারেশন**। এটি নির্ধারণ করে:
+- ফাংশন কোন প্যারামিটার নেবে
+- প্যারামিটারগুলোর টাইপ কী হবে
+- ফাংশন কোন টাইপের ভ্যালু রিটার্ন করবে
+
+### 📊 Example Breakdown
+
+#### 1. **No Parameters, No Return Value**
+```typescript
+let userInfo01: ()=> void;
+// ↑ ফাংশন সিগনেচার
+// ↑ কোনো প্যারামিটার নেই
+// ↑ রিটার্ন টাইপ: void (কিছু রিটার্ন করবে না)
+
+userInfo01 = ()=> {
+    console.log("Wasim is 28 Years old!")
+}
+```
+
+#### 2. **One Parameter, No Return Value**
+```typescript
+let userInfo02: (name: string)=> void;
+// ↑ একটি স্ট্রিং প্যারামিটার
+// ↑ রিটার্ন টাইপ: void
+
+userInfo02 = (name: string)=> {
+    console.log(`${name} is 28 Years old!`)
+}
+```
+
+#### 3. **Multiple Parameters, No Return Value**
+```typescript
+let userInfo03: (name: string, age: number)=> void;
+// ↑ দুটি প্যারামিটার: string এবং number
+// ↑ রিটার্ন টাইপ: void
+
+userInfo03 = (name: string, age: number)=> {
+    console.log(`${name} is ${age} Years old!`)
+}
+```
+
+---
+
+## 🎯 Advanced Examples
+
+### 🔹 Function with Return Type
+```typescript
+// সংখ্যা যোগ করার ফাংশন
+let addNumbers: (num1: number, num2: number) => number;
+
+addNumbers = (x: number, y: number): number => {
+    return x + y;
+}
+
+let result = addNumbers(10, 20);
+console.log(result); // 30
+```
+
+### 🔹 Optional Parameters
+```typescript
+// Optional parameter ব্যবহার
+let greetUser: (name: string, title?: string) => void;
+
+greetUser = (name: string, title?: string) => {
+    if (title) {
+        console.log(`Hello, ${title} ${name}!`);
+    } else {
+        console.log(`Hello, ${name}!`);
+    }
+}
+
+greetUser("Wasim"); // Hello, Wasim!
+greetUser("Wasim", "Mr."); // Hello, Mr. Wasim!
+```
+
+### 🔹 Default Parameters
+```typescript
+// Default parameter ব্যবহার
+let calculateArea: (width: number, height?: number) => number;
+
+calculateArea = (width: number, height: number = 10): number => {
+    return width * height;
+}
+
+console.log(calculateArea(5)); // 50 (5 * 10)
+console.log(calculateArea(5, 20)); // 100 (5 * 20)
+```
+
+---
+
+## 📝 Common Function Signature Patterns
+
+| Pattern | Example | Description |
+|---------|---------|-------------|
+| **No params, no return** | `() => void` | কোনো ইনপুট নেই, কোনো আউটপুট নেই |
+| **With params, no return** | `(name: string) => void` | ইনপুট আছে, কিন্তু আউটপুট নেই |
+| **With params and return** | `(a: number, b: number) => number` | ইনপুট এবং আউটপুট উভয়ই আছে |
+| **Optional params** | `(name: string, age?: number) => void` | কিছু প্যারামিটার অপশনাল |
+| **Rest params** | `(...numbers: number[]) => number` | ভ্যারিয়েবল সংখ্যক প্যারামিটার |
+
+---
+
+
+
+## 🎯 Practical Use Case: Calculator Functions
+
+```typescript
+// Calculator with function signatures
+type Calculator = {
+    add: (a: number, b: number) => number;
+    subtract: (a: number, b: number) => number;
+    multiply: (a: number, b: number) => number;
+    divide: (a: number, b: number) => number;
+}
+
+const calculator: Calculator = {
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b,
+    multiply: (a, b) => a * b,
+    divide: (a, b) => a / b
+}
+
+console.log("Addition:", calculator.add(10, 5)); // 15
+console.log("Subtraction:", calculator.subtract(10, 5)); // 5
+console.log("Multiplication:", calculator.multiply(10, 5)); // 50
+console.log("Division:", calculator.divide(10, 5)); // 2
+```
+
+---
+
+## 📊 Output Screenshot
+
+![Function Signature Output](/img/img16.png)
+
+---
