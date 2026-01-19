@@ -1438,31 +1438,6 @@ processPerson(admin);  // Admin: Omar, Role: Super Admin
 
 ---
 
-## 🛠️ Practical Examples
-
-### 🔹 API Response Handler
-```typescript
-type ApiResponse = 
-    | { status: "success"; data: any }
-    | { status: "error"; message: string }
-    | { status: "loading" };
-
-function handleResponse(response: ApiResponse): void {
-    if (response.status === "success") {
-        console.log("Data:", response.data);
-    } else if (response.status === "error") {
-        console.log("Error:", response.message);
-    } else if (response.status === "loading") {
-        console.log("Loading...");
-    }
-}
-
-handleResponse({ status: "success", data: { id: 1, name: "Wasim" } });
-handleResponse({ status: "error", message: "Not found" });
-handleResponse({ status: "loading" });
-```
----
-
 ## 🔄 `typeof` Operator Advanced Usage
 
 ### 🔹 Type Inference with `typeof`
@@ -1504,30 +1479,202 @@ console.log(myRole); // ADMIN
 ```
 
 ---
+## 📚 Class 16: Generics
 
-## 🔗 Real-world Use Cases
+এই ক্লাসে আমরা শিখবো TypeScript-এ **Generics** কী এবং কীভাবে ব্যবহার করতে হয়। Generics আমাদেরকে reusable, type-safe কোড লেখতে সাহায্য করে।
 
-1. **API Request Handler:**
+---
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`generics.ts`)
 ```typescript
-async function handleRequest(request: FetchRequest | GraphQLRequest) {
-    if (request.type === "fetch") {
-        // Fetch API call
-    } else if (request.type === "graphql") {
-        // GraphQL API call
-    }
+function generic<X, Y, Z>(Id: X, Age: Y, name: Z) {
+    console.log(`userId: ${Id}, age: ${Age}, name: ${name}`)
 }
+
+generic("101", 28, "wasim");
+generic(101, 28, "omar");
+generic(101, "28", 28);
+generic("101", "28", 140);
 ```
 
-2. **Form Input Processing:**
+## 🔍 Generics Explained
+
+### 📌 What are Generics?
+Generics হলো TypeScript-এর একটি শক্তিশালী feature যা **reusable components** তৈরি করতে সাহায্য করে। এটি আমাদেরকে বিভিন্ন টাইপের সাথে কাজ করতে দেয়, কিন্তু compile time-এ টাইপ সেফটি বজায় রাখে।
+
+### 📊 Basic Generic Syntax
 ```typescript
-function processInput(input: string | number | File) {
-    if (typeof input === "string") {
-        return input.trim();
-    } else if (typeof input === "number") {
-        return input.toString();
-    } else if (input instanceof File) {
-        return input.name;
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let output1 = identity<string>("Hello");  // T is string
+let output2 = identity<number>(42);       // T is number
+```
+
+---
+
+## 🎯 Generic Examples
+
+### 🔹 Single Type Parameter
+```typescript
+function logItem<T>(item: T): void {
+    console.log(`Item: ${item}, Type: ${typeof item}`);
+}
+
+logItem("Hello");      // Item: Hello, Type: string
+logItem(42);           // Item: 42, Type: number
+logItem(true);         // Item: true, Type: boolean
+logItem([1, 2, 3]);    // Item: 1,2,3, Type: object
+```
+
+### 🔹 Multiple Type Parameters
+```typescript
+function pair<T, U>(first: T, second: U): [T, U] {
+    return [first, second];
+}
+
+const stringPair = pair("Hello", "World");     // [string, string]
+const mixedPair = pair(42, "Answer");          // [number, string]
+const booleanPair = pair(true, false);         // [boolean, boolean]
+
+console.log(stringPair);   // ["Hello", "World"]
+console.log(mixedPair);    // [42, "Answer"]
+console.log(booleanPair);  // [true, false]
+```
+
+## 🛠️ Practical Examples
+
+### 🔹 Generic Array Functions
+```typescript
+// Get first element of array
+function getFirst<T>(array: T[]): T | undefined {
+    return array[0];
+}
+
+const numbers = [1, 2, 3, 4, 5];
+const strings = ["a", "b", "c", "d"];
+
+console.log(getFirst(numbers));  // 1
+console.log(getFirst(strings));  // "a"
+
+// Filter array by type
+function filterByType<T>(array: any[], type: string): T[] {
+    return array.filter(item => typeof item === type) as T[];
+}
+
+const mixedArray = [1, "hello", true, 42, "world", false];
+const numbersOnly = filterByType<number>(mixedArray, "number");
+const stringsOnly = filterByType<string>(mixedArray, "string");
+
+console.log(numbersOnly);  // [1, 42]
+console.log(stringsOnly);  // ["hello", "world"]
+```
+
+### 🔹 Generic Object Functions
+```typescript
+// Merge two objects
+function mergeObjects<T, U>(obj1: T, obj2: U): T & U {
+    return { ...obj1, ...obj2 };
+}
+
+const user = { name: "Wasim", age: 28 };
+const contact = { email: "wasim@example.com", phone: "0123456789" };
+
+const merged = mergeObjects(user, contact);
+console.log(merged);
+// { name: "Wasim", age: 28, email: "wasim@example.com", phone: "0123456789" }
+
+// Get value by key
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+
+const person = {
+    name: "Omar",
+    age: 29,
+    city: "Dhaka"
+};
+
+console.log(getValue(person, "name"));  // "Omar"
+console.log(getValue(person, "age"));   // 29
+console.log(getValue(person, "city"));  // "Dhaka"
+```
+
+### 🔹 Generic Class Example
+```typescript
+class Stack<T> {
+    private items: T[] = [];
+
+    push(item: T): void {
+        this.items.push(item);
+    }
+
+    pop(): T | undefined {
+        return this.items.pop();
+    }
+
+    peek(): T | undefined {
+        return this.items[this.items.length - 1];
+    }
+
+    size(): number {
+        return this.items.length;
+    }
+
+    isEmpty(): boolean {
+        return this.items.length === 0;
     }
 }
+
+// Number stack
+const numberStack = new Stack<number>();
+numberStack.push(1);
+numberStack.push(2);
+numberStack.push(3);
+console.log(numberStack.pop());  // 3
+console.log(numberStack.peek()); // 2
+
+// String stack
+const stringStack = new Stack<string>();
+stringStack.push("Hello");
+stringStack.push("World");
+console.log(stringStack.pop());  // "World"
+
+// Object stack
+interface User {
+    id: number;
+    name: string;
+}
+
+const userStack = new Stack<User>();
+userStack.push({ id: 1, name: "Wasim" });
+userStack.push({ id: 2, name: "Omar" });
+console.log(userStack.peek());  // { id: 2, name: "Omar" }
 ```
+
+---
+
+## 📝 Common Generic Patterns
+
+| Pattern | Example | Use Case |
+|---------|---------|----------|
+| **Single Type** | `<T>` | সাধারণ generic ফাংশন |
+| **Multiple Types** | `<T, U>` | একাধিক টাইপ প্যারামিটার |
+| **Constraints** | `<T extends HasLength>` | টাইপের উপর শর্ত আরোপ |
+| **Default Types** | `<T = any>` | ডিফল্ট টাইপ সেট করা |
+| **Key Constraints** | `<K extends keyof T>` | object keys-এর জন্য |
+
+---
+
+## 💡 Key Takeaways
+
+1. **Generics** reusable এবং type-safe কোড লেখতে সাহায্য করে
+2. **Type parameters** (`<T>`) দিয়ে বিভিন্ন টাইপের জন্য কাজ করে
+3. **Constraints** (`extends`) দিয়ে টাইপের উপর শর্ত আরোপ করা যায়
+4. **Type inference** দিয়ে TypeScript নিজে থেকে টাইপ বুঝে নেয়
+5. **Generic classes/interfaces** দিয়ে reusable components তৈরি করা যায়
+
 ---
