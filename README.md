@@ -732,23 +732,6 @@ h1 {
 
 ---
 
-## ▶️ Compile Entire Project
-
-এখন আলাদা করে ফাইল দিতে হবে না
-শুধু এই কমান্ডই যথেষ্ট:
-
-```bash
-npx tsc
-```
-
-Watch mode এ রান করতে:
-
-```bash
-npx tsc --watch
-```
-
----
-
 ## 🔄 Updated Workflow
 
 ```
@@ -1181,65 +1164,6 @@ type Employee = User & {
 
 ---
 
-## 🎯 Advanced Interface Features
-
-### 🔹 Function in Interface
-```typescript
-interface ICalculator {
-    add(a: number, b: number): number;
-    subtract(a: number, b: number): number;
-}
-
-let calculator: ICalculator = {
-    add: (a, b) => a + b,
-    subtract: (a, b) => a - b
-}
-
-console.log("5 + 3 =", calculator.add(5, 3));
-console.log("5 - 3 =", calculator.subtract(5, 3));
-```
-
-### 🔹 Index Signatures
-```typescript
-interface IStringArray {
-    [index: number]: string;
-}
-
-let names: IStringArray = ["Wasim", "Omar", "Rafiq"];
-console.log(names[0]); // Wasim
-```
-
-### 🔹 Interface with Classes
-```typescript
-interface IVehicle {
-    brand: string;
-    start(): void;
-    stop(): void;
-}
-
-class Car implements IVehicle {
-    brand: string;
-    
-    constructor(brand: string) {
-        this.brand = brand;
-    }
-    
-    start(): void {
-        console.log(`${this.brand} car started`);
-    }
-    
-    stop(): void {
-        console.log(`${this.brand} car stopped`);
-    }
-}
-
-let myCar = new Car("Toyota");
-myCar.start();
-myCar.stop();
-```
-
----
-
 ## 📝 Exercise: Student Management System
 
 ```typescript
@@ -1267,42 +1191,6 @@ let students: IStudent[] = [];
 ## 📊 Output Screenshot
 
 ![Interface Output](/img/img17.png)
-
----
-
-## 🔗 Real-world Use Cases
-
-1. **API Response Handling:**
-```typescript
-interface IApiResponse {
-    status: number;
-    data: any;
-    message: string;
-    timestamp: Date;
-}
-```
-
-2. **Form Validation:**
-```typescript
-interface ILoginForm {
-    email: string;
-    password: string;
-    rememberMe?: boolean;
-}
-```
-
-3. **E-commerce Product:**
-```typescript
-interface IProduct {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-    images: string[];
-    category: string;
-    rating: number;
-}
-```
 
 ---
 
