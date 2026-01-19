@@ -951,3 +951,367 @@ console.log(calculateArea(5, 20)); // 100 (5 * 20)
 ![Function Signature Output](/img/img16.png)
 
 ---
+# 📚 Class 14: Interface
+
+এই ক্লাসে আমরা শিখবো TypeScript-এ **Interface** কী এবং কীভাবে ব্যবহার করতে হয়। Interface হলো TypeScript-এর একটি শক্তিশালী feature যা object-এর structure ডিফাইন করতে ব্যবহৃত হয়।
+
+---
+
+### 🔧 Setup & Compilation Process
+
+1. **TypeScript ফাইল তৈরি করুন** (`interface.ts`)
+```typescript
+interface IUser {
+    id: number,
+    name: string,
+    age: number
+}
+
+let users: IUser[] = [];
+
+let user1: IUser = {
+    id: 1,
+    name: "Wasim Uddin",
+    age: 28
+}
+
+let user2: IUser = {
+    id: 2,
+    name: "Omar Labib",
+    age: 29
+}
+
+users.push(user1);
+users.push(user2);
+
+//console.log(users)
+
+const printUserInfo = (user: IUser) => {
+    console.log(`userid: ${user.id}, username: ${user.name}, userage: ${user.age}`)
+}
+
+users.forEach(user => printUserInfo(user))
+```
+---
+
+## 🔍 Interface Explained
+
+### 📌 What is Interface?
+Interface হলো **একটি কন্ট্রাক্ট বা চুক্তি** যা object-এর structure নির্ধারণ করে। এটি বলে দেয়:
+- object-এ কোন properties থাকবে
+- প্রতিটি property-র type কী হবে
+- কোন properties optional বা required
+
+### 📊 Basic Interface Structure
+```typescript
+interface InterfaceName {
+    property1: type;
+    property2: type;
+    property3?: type; // Optional property
+}
+```
+---
+
+## 🎯 Interface Examples
+
+### 🔹 Basic Interface
+```typescript
+interface IPerson {
+    name: string;
+    age: number;
+    email: string;
+}
+
+let person1: IPerson = {
+    name: "Wasim",
+    age: 28,
+    email: "wasim@example.com"
+}
+```
+
+### 🔹 Optional Properties
+```typescript
+interface IEmployee {
+    id: number;
+    name: string;
+    department: string;
+    salary?: number; // Optional property
+}
+
+let emp1: IEmployee = {
+    id: 101,
+    name: "Rafiq",
+    department: "IT"
+    // salary না দিলেও চলবে
+}
+```
+---
+
+## 🛠️ Practical Examples
+
+### 🔹 User Management System
+```typescript
+interface IUser {
+    id: number;
+    name: string;
+    email: string;
+    age: number;
+    isActive: boolean;
+}
+
+// User array
+let users: IUser[] = [];
+
+// Add users
+users.push({
+    id: 1,
+    name: "Wasim Uddin",
+    email: "wasim@example.com",
+    age: 28,
+    isActive: true
+});
+
+users.push({
+    id: 2,
+    name: "Omar Faruk",
+    email: "omar@example.com",
+    age: 29,
+    isActive: true
+});
+
+// Function to display user info
+function displayUsers(users: IUser[]): void {
+    users.forEach(user => {
+        console.log(`
+        ID: ${user.id}
+        Name: ${user.name}
+        Email: ${user.email}
+        Age: ${user.age}
+        Status: ${user.isActive ? "Active" : "Inactive"}
+        ----------------------
+        `);
+    });
+}
+
+displayUsers(users);
+```
+
+### 🔹 Product Interface
+```typescript
+interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+    category: string;
+    inStock: boolean;
+    discount?: number; // Optional
+}
+
+let products: IProduct[] = [
+    {
+        id: 1,
+        name: "Laptop",
+        price: 50000,
+        category: "Electronics",
+        inStock: true,
+        discount: 10
+    },
+    {
+        id: 2,
+        name: "Book",
+        price: 500,
+        category: "Education",
+        inStock: true
+        // discount না দিলেও চলবে
+    }
+];
+
+// Calculate total price
+function calculateTotal(products: IProduct[]): number {
+    return products.reduce((total, product) => {
+        let price = product.price;
+        if (product.discount) {
+            price = price - (price * product.discount / 100);
+        }
+        return total + price;
+    }, 0);
+}
+
+console.log("Total Price:", calculateTotal(products));
+```
+
+---
+
+## 🔄 Interface vs Type Alias
+
+### Interface
+```typescript
+interface IUser {
+    id: number;
+    name: string;
+}
+
+// Extend করা যায়
+interface IEmployee extends IUser {
+    salary: number;
+}
+```
+
+### Type Alias
+```typescript
+type User = {
+    id: number;
+    name: string;
+}
+
+// Intersection করা যায়
+type Employee = User & {
+    salary: number;
+}
+```
+
+### Comparison Table
+| Feature | Interface | Type Alias |
+|---------|-----------|------------|
+| Extend | ✅ `extends` | ✅ `&` (intersection) |
+| Implement | ✅ Class-এ implement করা যায় | ❌ Class-এ implement করা যায় না |
+| Union Types | ❌ | ✅ |
+| Tuple Types | ❌ | ✅ |
+| Declaration Merging | ✅ | ❌ |
+
+---
+
+## 🎯 Advanced Interface Features
+
+### 🔹 Function in Interface
+```typescript
+interface ICalculator {
+    add(a: number, b: number): number;
+    subtract(a: number, b: number): number;
+}
+
+let calculator: ICalculator = {
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b
+}
+
+console.log("5 + 3 =", calculator.add(5, 3));
+console.log("5 - 3 =", calculator.subtract(5, 3));
+```
+
+### 🔹 Index Signatures
+```typescript
+interface IStringArray {
+    [index: number]: string;
+}
+
+let names: IStringArray = ["Wasim", "Omar", "Rafiq"];
+console.log(names[0]); // Wasim
+```
+
+### 🔹 Interface with Classes
+```typescript
+interface IVehicle {
+    brand: string;
+    start(): void;
+    stop(): void;
+}
+
+class Car implements IVehicle {
+    brand: string;
+    
+    constructor(brand: string) {
+        this.brand = brand;
+    }
+    
+    start(): void {
+        console.log(`${this.brand} car started`);
+    }
+    
+    stop(): void {
+        console.log(`${this.brand} car stopped`);
+    }
+}
+
+let myCar = new Car("Toyota");
+myCar.start();
+myCar.stop();
+```
+
+---
+
+## 📝 Exercise: Student Management System
+
+```typescript
+// Exercise: Create a Student Management System
+interface IStudent {
+    roll: number;
+    name: string;
+    department: string;
+    subjects: string[];
+    gpa: number;
+    isGraduated?: boolean;
+}
+
+// 1. Create an array of students
+let students: IStudent[] = [];
+
+// 2. Add at least 3 students
+// 3. Create a function to display all students
+// 4. Create a function to find student by roll number
+// 5. Create a function to calculate average GPA
+```
+
+---
+
+## 📊 Output Screenshot
+
+![Interface Output](/img/img17.png)
+
+---
+
+## 🔗 Real-world Use Cases
+
+1. **API Response Handling:**
+```typescript
+interface IApiResponse {
+    status: number;
+    data: any;
+    message: string;
+    timestamp: Date;
+}
+```
+
+2. **Form Validation:**
+```typescript
+interface ILoginForm {
+    email: string;
+    password: string;
+    rememberMe?: boolean;
+}
+```
+
+3. **E-commerce Product:**
+```typescript
+interface IProduct {
+    id: string;
+    title: string;
+    price: number;
+    description: string;
+    images: string[];
+    category: string;
+    rating: number;
+}
+```
+
+---
+
+## ⚡ Quick Notes
+
+- Interface শুধু **টাইপ চেকিং**-এর জন্য, **রানটাইম**-এ কোনো existence নেই
+- JavaScript-এ compile করলে interface মুছে যায়
+- **readonly** properties compile time-এ protect করে
+- **Optional properties** `?` দিয়ে বোঝানো হয়
+- Interface দিয়ে **class implement** করা যায়
+
+---
