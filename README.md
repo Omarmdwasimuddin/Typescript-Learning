@@ -951,7 +951,7 @@ console.log(calculateArea(5, 20)); // 100 (5 * 20)
 ![Function Signature Output](/img/img16.png)
 
 ---
-# 📚 Class 14: Interface
+## 📚 Class 14: Interface
 
 এই ক্লাসে আমরা শিখবো TypeScript-এ **Interface** কী এবং কীভাবে ব্যবহার করতে হয়। Interface হলো TypeScript-এর একটি শক্তিশালী feature যা object-এর structure ডিফাইন করতে ব্যবহৃত হয়।
 
