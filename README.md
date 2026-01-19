@@ -946,34 +946,6 @@ console.log(calculateArea(5, 20)); // 100 (5 * 20)
 
 ---
 
-
-
-## 🎯 Practical Use Case: Calculator Functions
-
-```typescript
-// Calculator with function signatures
-type Calculator = {
-    add: (a: number, b: number) => number;
-    subtract: (a: number, b: number) => number;
-    multiply: (a: number, b: number) => number;
-    divide: (a: number, b: number) => number;
-}
-
-const calculator: Calculator = {
-    add: (a, b) => a + b,
-    subtract: (a, b) => a - b,
-    multiply: (a, b) => a * b,
-    divide: (a, b) => a / b
-}
-
-console.log("Addition:", calculator.add(10, 5)); // 15
-console.log("Subtraction:", calculator.subtract(10, 5)); // 5
-console.log("Multiplication:", calculator.multiply(10, 5)); // 50
-console.log("Division:", calculator.divide(10, 5)); // 2
-```
-
----
-
 ## 📊 Output Screenshot
 
 ![Function Signature Output](/img/img16.png)
